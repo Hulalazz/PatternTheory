@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f44dc7b1-7490-4bef-87c6-71224bccf438" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/page76_multivar_gaussian_x.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/page77_multivar_gaussian_freq_s.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_graphing.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_graphing_multiple.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_helper.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_inverse_circulant.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_randvect.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_subsitute_phase.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_subsitute_phase_gauss.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samp_toeplitz_cholesky.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page76_multivar_gaussian.py" afterPath="$PROJECT_DIR$/page76_multivar_gaussian.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page77_multivar_gaussian_freq.py" afterPath="$PROJECT_DIR$/page77_multivar_gaussian_freq.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page82_kurtosis_graphs.py" afterPath="$PROJECT_DIR$/page82_kurtosis_graphs.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/sandbox.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/sandbox2.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/x_graphing.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/x_graphing_multiple.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/xx.py" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,24 +19,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="page77_multivar_gaussian_freq_s.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="page77_multivar_gaussian_freq_s.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/page77_multivar_gaussian_freq_s.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page77_multivar_gaussian_freq.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/page77_multivar_gaussian_freq.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="61" lean-forward="false" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
-              <folding>
-                <element signature="e#174#192#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -688,21 +668,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/page77_multivar_gaussian_freq.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="2" column="61" lean-forward="false" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+          <folding>
+            <element signature="e#174#192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/page77_multivar_gaussian_freq_s.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/page77_multivar_gaussian_freq.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="61" lean-forward="false" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
-          <folding>
-            <element signature="e#174#192#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
