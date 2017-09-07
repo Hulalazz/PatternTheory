@@ -83,3 +83,4 @@ if __name__ == '__main__':
     anima = substitute_phase_gauss(N, 261.62/2, reference, 1)
     anima.start()
     plt.show()
+    
