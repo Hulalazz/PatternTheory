@@ -1,4 +1,5 @@
-#  Recreation of the kurtosis graphs in page 82
+# Re-creating of the kurtosis graphs in page 82
+# It is different though, we didn't do STFT to calculate the data that is to be plotted.
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -76,7 +77,7 @@ Plotting the distribution curve
 
 # Calculation of mean and variance
 mean_mean = np.mean(derivative)  # mean
-std_std = np.std(derivative)  # std_std
+std_std = np.std(derivative)  # std_dev
 print "mean: {}".format(mean_mean)
 print "stddev: {}".format(std_std)
 
@@ -94,7 +95,7 @@ interval = (2.*extreme)/number_of_bars
 histogram_entry = 0
 
 # populating the histogram
-for x in np.arange(-extreme, extreme, interval):
+for x in np.arange(-extreme + interval/2.0, extreme + interval/2.0, interval):
     for entry in derivative:
         if (entry > x) and (entry < interval + x):
             histogram[histogram_entry] += 1.0/(len(derivative)*interval)
@@ -107,24 +108,37 @@ print "area under graph: {}".format(np.sum(histogram)*interval)
 #           for x in np.arange(-extreme, extreme, interval)]))
 
 # plotting histogram against normal distribution
-plt.plot(np.arange(-extreme, extreme, interval),
+plt.plot(np.arange(-extreme + interval/2.0, extreme + interval/2.0, interval),
          histogram, lw=0.8)
+plt.plot(np.arange(-extreme + interval/2.0, extreme + interval/2.0, interval),
+         histogram[::-1], lw=0.1)
 plt.plot(np.arange(-extreme, extreme, interval),
          [1/(std_std*np.sqrt(2*np.pi))*
           np.exp(-(x - mean_mean)**2 / (2*(std_std)**2))
           for x in np.arange(-extreme, extreme, interval)])
 
 # taking the log of the histogram
-histogram = [np.log(entry + 0.00000001) for entry in histogram]
+histogram = [np.log(entry + 0.1/len(derivative)) for entry in histogram]
 
 # plotting histogram against log-normal distribution
-# plt.plot(np.arange(-extreme, extreme, interval), histogram, lw=0.8)
-# plt.plot(np.arange(-extreme, extreme, interval),[-(x - mean_mean)**2 / (2*(std_std)**2)
-#                                                  - np.log(std_std*np.sqrt(2*np.pi))
-#                                                  for x in np.arange(-extreme, extreme, interval)])
+plt.plot(np.arange(-extreme + interval/2.0, extreme + interval/2.0, interval),
+         histogram, lw=0.8)
+plt.plot(np.arange(-extreme + interval/2.0, extreme + interval/2.0, interval),
+         histogram[::-1], lw=0.1)
+plt.plot(np.arange(-extreme, extreme, interval),
+         [-(x - mean_mean)**2 / (2*(std_std)**2)
+          - np.log(std_std*np.sqrt(2*np.pi))
+          for x in np.arange(-extreme, extreme, interval)])
 
+derivative = np.random.randn(10000)
+mean_mean = np.mean(derivative)  # mean
+std_std = np.std(derivative)  # std_dev
+meenus = np.add(derivative, [-mean_mean]*len(derivative))
+meenus_4 = np.sum(np.power(meenus, 4))
+print "kurtosis: {}".format(-3 + meenus_4/(len(derivative)*std_std**4))  # excess kurtosis
+print "kurtosis: {}".format(kurtosis(derivative))  # Fisher's  definition (normal ==> 3.0)
 
-print "kurtosis: {}".format(kurtosis(derivative))  # Pearson's definition (normal ==> 3.0)
-
+ax = plt.gca()
+ax.set_ylim([0, 1])
+ax.set_xlim([-2.5*std_std, 2.5*std_std])
 plt.show()
-
