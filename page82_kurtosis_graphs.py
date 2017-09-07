@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sounddevice as sd
 import soundfile as sf
-import time
 import os
 from scipy.stats import kurtosis
 
@@ -52,7 +51,7 @@ elif window_type == 'trig':
     energy = [np.sum(np.multiply(signal_square[x:x + window_size], window_function)) for x in range(signal_length - window_size)]
     #energy = 1 / (float(window_size)) ** (3.0 / 4.0) * np.array(energy)  # maybe not necessary
 
-# scaling down arbitrarily, shouldn't matter
+# scaling down arbitrarily, originally for viewing against the signal
 energy = 1.0 / (float(window_size)) ** (1.0 / 4.0) * np.array(energy)
 
 # energy_noise = 0  # adding noise to energy sequence, to "smoothen"
@@ -62,43 +61,43 @@ energy = 1.0 / (float(window_size)) ** (1.0 / 4.0) * np.array(energy)
 # plt.plot(energy)
 # plt.show()
 
-derivative = [(energy[x+1] - energy[x]) for x in range(len(energy) - 1)]
+difference = [(energy[x+1] - energy[x]) for x in range(len(energy) - 1)]
 # difference between the energy of each of the snippet
 # this is what we are interested in
 
-# plt.plot(derivative)
+# plt.plot(difference)
 # plt.show()
 
-# derivative = energy  # for experimental purposes
+# difference = energy  # for experimental purposes
 
 '''
 Plotting the distribution curve
 '''
 
 # Calculation of mean and variance
-mean_mean = np.mean(derivative)  # mean
-std_std = np.std(derivative)  # std_dev
+mean_mean = np.mean(difference)  # mean
+std_std = np.std(difference)  # std_dev
 print "mean: {}".format(mean_mean)
 print "stddev: {}".format(std_std)
 
 # Standardising mean and variance
-derivative = np.add(derivative, [-mean_mean]*len(derivative))
-derivative = 1.0/std_std * np.array(derivative)
+difference = np.add(difference, [-mean_mean]*len(difference))
+difference = 1.0/std_std * np.array(difference)
 # print "mean: {}".format(mean_mean)
 # print "stddev: {}".format(std_std)
 
 # building a histogram
 number_of_bars = 999
 histogram = [0.0]*(number_of_bars)
-extreme = max(np.absolute(derivative))
+extreme = max(np.absolute(difference))
 interval = (2.*extreme)/number_of_bars
 histogram_entry = 0
 
 # populating the histogram
 for x in np.arange(-extreme + interval/2.0, extreme + interval/2.0, interval):
-    for entry in derivative:
+    for entry in difference:
         if (entry > x) and (entry < interval + x):
-            histogram[histogram_entry] += 1.0/(len(derivative)*interval)
+            histogram[histogram_entry] += 1.0/(len(difference)*interval)
             # possible float/integer error
     histogram_entry += 1
 
@@ -118,7 +117,7 @@ plt.plot(np.arange(-extreme, extreme, interval),
           for x in np.arange(-extreme, extreme, interval)])
 
 # taking the log of the histogram
-histogram = [np.log(entry + 0.1/len(derivative)) for entry in histogram]
+histogram = [np.log(entry + 0.1/len(difference)) for entry in histogram]
 
 # plotting histogram against log-normal distribution
 plt.plot(np.arange(-extreme + interval/2.0, extreme + interval/2.0, interval),
@@ -130,14 +129,15 @@ plt.plot(np.arange(-extreme, extreme, interval),
           - np.log(std_std*np.sqrt(2*np.pi))
           for x in np.arange(-extreme, extreme, interval)])
 
-derivative = np.random.randn(10000)
-mean_mean = np.mean(derivative)  # mean
-std_std = np.std(derivative)  # std_dev
-meenus = np.add(derivative, [-mean_mean]*len(derivative))
+#difference = np.random.randn(10000)  # for testing
+mean_mean = np.mean(difference)  # mean
+std_std = np.std(difference)  # std_dev
+meenus = np.add(difference, [-mean_mean]*len(difference))
 meenus_4 = np.sum(np.power(meenus, 4))
-print "kurtosis: {}".format(-3 + meenus_4/(len(derivative)*std_std**4))  # excess kurtosis
-print "kurtosis: {}".format(kurtosis(derivative))  # Fisher's  definition (normal ==> 3.0)
+print "kurtosis: {}".format(-3 + meenus_4/(len(difference)*std_std**4))  # excess kurtosis
+print "kurtosis: {}".format(kurtosis(difference))  # Fisher's  definition (normal ==> 3.0)
 
+# set graph limits and plot
 ax = plt.gca()
 ax.set_ylim([0, 1])
 ax.set_xlim([-2.5*std_std, 2.5*std_std])
