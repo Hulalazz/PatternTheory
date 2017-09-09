@@ -1,3 +1,6 @@
+# we aim to reproduce the graph
+# where to find that 8000 sample data?
+
 '''
 Traceback (most recent call last):
   File "C:/Users/Tong Hui Kang/Dropbox/UROP for LCC/companion_ch2/page82_kurtosis_recreation.py", line 22, in <module>
