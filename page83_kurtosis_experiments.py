@@ -13,14 +13,15 @@ from scipy.stats import kurtosis
 
 # taking kurtosis of Y, using a larger sampler size for Y
 # coin filpping
-b = 100000  # as n is small, we would use a larger number b for the kurtosis of Y
-Y = np.random.random_integers(0, 10, b)
+b = 500000  # as n is small, we would use a larger number b for the kurtosis of Y
+# Y = np.random.random_integers(0, 10, b)  # assign a random int from 0 to k to each entry of Y
+Y = np.random.poisson(1.5, b) # possion with lambda
 print("mean of Y: {}".format(np.mean(Y)))
 print("variance of Y: {}".format(np.var(Y)))
 print("kurtosis of Y: {} \n".format(kurtosis(Y)))
 # print("kurtosis of Y: {}".format(kurtosis(Y) * b / (b - 1)))  # bias/unbiased?
 
-n = 20  # number of iid Y that make up X
+n = 2  # number of iid Y that make up X
 m = 100000  # number of samples of X we are taking
 z = 100  # z is the number of experiments
 
@@ -30,7 +31,8 @@ kurtosis_X = [0]*z  # z is the number of experiments
 for k in range(z):  # perhaps can be parallelised
     for j in range(m):
         # coin flipping
-        Y = np.random.random_integers(0, 10, n)  # assign 0 or 1 to each entry of Y
+        # Y = np.random.random_integers(0, 10, n)  # assign a random int from 0 to k to each entry of Y
+        Y = np.random.poisson(1.5, n)  # possion with lambda
         X[j] = np.sum(Y)  # takes the sum of Y
     kurtosis_X[k] = kurtosis(X) * m / (m - 1)  # bias/unbiased sorcery
 

@@ -1,6 +1,8 @@
 # now we are working on the discrete pdf of the random variable
 
 import numpy as np
+from scipy.misc import factorial
+
 
 def print_stat_details(rv, name_of_rv):
     len_rv = len(rv)
@@ -16,7 +18,10 @@ def print_stat_details(rv, name_of_rv):
     print("kurtosis of {}: {} \n".format(name_of_rv, kurt_rv))
 
 # define discrete pdf of Y
-Y = [0.25, 0.25, 0.25, 0.25]
+# Y = [0.25, 0.25, 0.25, 0.25]
+mu = 1.5
+Y = [np.exp(-mu) * mu**k / factorial(k) for k in range(20)]
+print Y
 
 # calculate mean, variance, kurtosis of Y
 print_stat_details(Y, "Y")
