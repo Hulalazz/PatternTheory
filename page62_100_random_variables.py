@@ -1,1 +1,0 @@
-# Box-Muller algorithm and simulation of Gaussian vectors

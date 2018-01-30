@@ -1,1 +1,0 @@
-# refer to formula on page 84
